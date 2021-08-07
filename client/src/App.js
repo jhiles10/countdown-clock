@@ -1,3 +1,4 @@
+//TODO: Work out how to build whole project in one go. backend and frontend
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
@@ -6,7 +7,7 @@ function App() {
 	const [data, setData] = React.useState(null);
 
 	React.useEffect(() => {
-		fetch("/api")
+		fetch("/api/countdown")
 		.then((res) => res.json())
 		.then((data) => setData(data.message));
 	}, []);
