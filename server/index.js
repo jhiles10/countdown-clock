@@ -4,10 +4,15 @@ const app = express();
 const path = require("path");
 
 // Initialise middleware (a request body parser)
-app.use(express.json({ extended: false }))
+app.use(express.json({ extended: false }));
+// This will have Node serve the files for our built react app.
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 app.use("/api/countdown", require("./api/countdown"));
-// app.use("/api/countdown", router)
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 const PORT = process.env.PORT || 3001;
 
